@@ -15,8 +15,24 @@ public class Application04 {
             1 글자 단위로 데이터를 처리한다. (문자)
          */
 
-        BufferedWriter bw = new BufferedWriter("c_buffer.txt");
-        
+        FileWriter fw = null;
 
+        try {
+            fw = new FileWriter("src/main/java/com/ohgiraffers/section02/stream/testWriter.txt");
+            fw.write(97);
+            fw.write('A');
+            fw.write(new char[]{'a','p','p','l','e','\n'});
+            fw.write("하이미디어\n");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            if(fw != null) {
+                try {
+                    fw.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
     }
 }
